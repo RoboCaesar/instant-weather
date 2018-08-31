@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600");
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  color: white;
+
+  /* background: darkblue; */
+
+  height: 99%;
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+
+  border: 1px solid transparent;
+  transition: background 5s;
+}
+
+#default-color {
+  background: rgb(111,74,143);
+  background: -moz-linear-gradient(236deg, rgba(111,74,143,1) 0%, rgba(195,173,84,1) 100%);
+  background: -webkit-linear-gradient(236deg, rgba(111,74,143,1) 0%, rgba(195,173,84,1) 100%);
+  background: linear-gradient(236deg, rgba(111,74,143,1) 0%, rgba(195,173,84,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6f4a8f",endColorstr="#c3ad54",GradientType=1);
+}
+
+#day-gradient {
+  background: rgb(143,74,74);
+  background: -moz-linear-gradient(32deg, rgba(143,74,74,1) 0%, rgba(195,173,84,1) 100%);
+  background: -webkit-linear-gradient(32deg, rgba(143,74,74,1) 0%, rgba(195,173,84,1) 100%);
+  background: linear-gradient(32deg, rgba(143,74,74,1) 0%, rgba(195,173,84,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8f4a4a",endColorstr="#c3ad54",GradientType=1); 
+  transition: background 5s;
+}
+
+#night-gradient {
+  background: rgb(83,69,98);
+  background: -moz-linear-gradient(146deg, rgba(83,69,98,1) 0%, rgba(137,179,155,1) 100%);
+  background: -webkit-linear-gradient(146deg, rgba(83,69,98,1) 0%, rgba(137,179,155,1) 100%);
+  background: linear-gradient(146deg, rgba(83,69,98,1) 0%, rgba(137,179,155,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#534562",endColorstr="#89b39b",GradientType=1); 
+  transition: background 5s;
+}
+
+button {
+  background-color: rgb(206, 185, 219);
+  font-size: 200%;
+  font-style: italic;
+}
+
+input {
+  font-size: 150%;
+  background-color: rgb(235, 228, 240);
+  color: #444;
+  border: 1px solid transparent;
+  box-shadow: 1px 1px 5px rgba(41, 33, 48, 0.5);
+}
+
+p {
+  display: inherit;
+  vertical-align: text-top;
+}
+
+.title {
+  font-size: 300%;
+}
+
+.weather-icon {
+  vertical-align: text-top;
+  font-size: 300%;
+  display: inherit;
+}
+
+#Dibujo {
+  fill: #FFF;
+}
+
+.css-icon {
+  fill: #FFF;
+}
+
+
+.page-appearance {
+  width: 100%;
+  padding: 0%;
+  margin: 0 auto;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  transition: background 5s;
+}
+
+.text-format {
+  color: #666;
+  font-weight: 300;
+}
+
+.temperature {
+  color: rgb(224, 224, 172);
+  font-size: 400%;
+  font-weight: 600;
+  margin: 0px;
+  /* text-shadow: 2px 2px 2px rgba(39, 34, 43, 0.3); */
+}
+
+.same-line {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#weather-table {
+  margin: auto;
+}
