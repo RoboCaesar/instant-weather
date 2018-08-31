@@ -1,5 +1,6 @@
 import {apikey} from './apikey.json';
 import {getCountryName} from './countrylist';
+import SearchBox from './searchbox.js';
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -85,9 +86,10 @@ export class CityData extends React.Component {
         if (cityData.cod === '404') {
             returnObject = <div id={backgroundType} className="page-appearance">
                 <h1 className="title">instantWeather</h1>
-                <form onSubmit={this.handleSubmit}>
+                {/* <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
-                </form>
+                </form> */}
+                <SearchBox />
                 <h3>Error: {cityData.message}</h3>
             </div>;
             //return <div id={backgroundType} className="page-appearance">Error: {error.message}</div>;
@@ -99,9 +101,10 @@ export class CityData extends React.Component {
             returnObject = 
                 <div id={backgroundType} className="page-appearance">
                     <h1 className="title">instantWeather</h1>
-                    <form onSubmit={this.handleSubmit}>
+                    {/* <form onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
-                    </form>
+                    </form> */}
+                    <SearchBox />
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in: {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
                     <div className="same-line">
                         <table>
