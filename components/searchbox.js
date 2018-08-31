@@ -3,14 +3,14 @@
 const axios = require('axios');
 
 
-function resultsItems(props) {
-    return props.map((entry) =>
-        <div className="search-result" key={entry.name}>
-            <p>{entry.name}, {entry.country}</p>
-            <p className="location-info">{entry.coord.lat}°, {entry.coord.lon}°</p>
-        </div>
-    );
-}
+// function resultsItems(props) {
+//     return props.map((entry) =>
+//         <div className="search-result" key={entry.id}>
+//             <p>{entry.name}, {entry.country}</p>
+//             <p className="location-info">{entry.coord.lat}°, {entry.coord.lon}°</p>
+//         </div>
+//     );
+// }
 
 //https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
 
@@ -21,6 +21,8 @@ class SearchBox extends React.Component {
         this.handleEntry = this.handleEntry.bind(this);
         this.handleLeave = this.handleLeave.bind(this);
         this.loadResults = this.loadResults.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.state = {
             resultsVisible: false,
             query: '',
@@ -49,6 +51,28 @@ class SearchBox extends React.Component {
 
     setWrapperRef(node) {
         this.wrapperRef = node;
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.searchSubmit(this.state.query);
+        console.log('Search submitted with query: ' + this.state.query);
+        this.setState({
+            resultsVisible: false,
+            query: '',
+            loading: false,
+            searchResults: []
+        });
+    }
+
+    handleClick(searchID) {
+        this.props.searchSubmit(searchID, true); //'true' meaning that we're searching with a numerical id
+        this.setState({
+            resultsVisible: false,
+            query: '',
+            loading: false,
+            searchResults: []
+        });       
     }
 
     handleEntry(e) {
@@ -97,22 +121,14 @@ class SearchBox extends React.Component {
 
         if (this.state.loading === false) {
             if (this.state.searchResults && this.state.searchResults.length > 0) {
-                results = 
-                    // <div>
-                    //     <div className="search-result">
-                    //         <p>Result One, USA</p>
-                    //         <p className="location-info">43.15°, -73.73°</p>
-                    //     </div>
-                    //     <div className="search-result">
-                    //         <p>Result Two, France</p>
-                    //         <p className="location-info">43.15°, -73.73°</p>
-                    //     </div>
-                    //     <div className="search-result">
-                    //         <p>Result Three, Canada</p>
-                    //         <p className="location-info">43.15°, -73.73°</p>
-                    //     </div>
-                    // </div>
-                    resultsItems(this.state.searchResults);
+                results = this.state.searchResults.map((entry) =>
+                    <div className="search-result" key={entry.id} onClick={() => this.handleClick(entry.id)}>
+                        <p>{entry.name}, {entry.country}</p>
+                        <p className="location-info">{entry.coord.lat}°, {entry.coord.lon}°</p>
+                    </div>
+                );
+                //resultsItems(this.state.searchResults);
+                console.log(results);
                 ;
             } else {
                 results = <p>No results found!</p>
@@ -124,8 +140,8 @@ class SearchBox extends React.Component {
 
         return (
             <div style={{margin: '0 auto'}}>
-                <form>
-                    <input onInput={this.handleEntry} type="text" />
+                <form onSubmit={this.handleSubmit} >
+                    <input onInput={this.handleEntry} type="text" value={this.state.query}/>
                     <div ref={this.setWrapperRef} className="results-box" style={{display: this.state.resultsVisible ? 'block' : 'none'}}>
                         {results}
                     </div>

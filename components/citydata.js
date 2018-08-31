@@ -31,6 +31,7 @@ export class CityData extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.loadCityData = this.loadCityData.bind(this);
     }
 
     handleChange(event) {
@@ -44,8 +45,15 @@ export class CityData extends React.Component {
         event.preventDefault();
     }
 
-    loadCityData(cityName) {
-        fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apikey)
+    loadCityData(cityNameOrID, numerical=false) {
+        let submitURL;
+        if (numerical === false) {
+            submitURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityNameOrID + '&appid=' + apikey;
+        } else { //With suggested search results, the city's id is submitted, not the name!
+            submitURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + cityNameOrID + '&appid=' + apikey;
+        }
+
+        fetch(submitURL)
         //('http://api.openweathermap.org/data/2.5/weather?q=ho%20chi%20minh%20city&appid=' + apikey)
             .then((res) => res.json())
             .then((result) => {
@@ -89,7 +97,7 @@ export class CityData extends React.Component {
                 {/* <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
                 </form> */}
-                <SearchBox />
+                <SearchBox searchSubmit={this.loadCityData}/>
                 <h3>Error: {cityData.message}</h3>
             </div>;
             //return <div id={backgroundType} className="page-appearance">Error: {error.message}</div>;
@@ -104,7 +112,7 @@ export class CityData extends React.Component {
                     {/* <form onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
                     </form> */}
-                    <SearchBox />
+                    <SearchBox searchSubmit={this.loadCityData}/>
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in: {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
                     <div className="same-line">
                         <table>
