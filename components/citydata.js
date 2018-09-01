@@ -54,7 +54,6 @@ export class CityData extends React.Component {
         }
 
         fetch(submitURL)
-        //('http://api.openweathermap.org/data/2.5/weather?q=ho%20chi%20minh%20city&appid=' + apikey)
             .then((res) => res.json())
             .then((result) => {
                 this.setState({
@@ -100,18 +99,13 @@ export class CityData extends React.Component {
                 <SearchBox searchSubmit={this.loadCityData}/>
                 <h3>Error: {cityData.message}</h3>
             </div>;
-            //return <div id={backgroundType} className="page-appearance">Error: {error.message}</div>;
         } else if (!isLoaded) {
             returnObject = <div id={backgroundType} className="page-appearance">Loading Weather Data....</div>;
-            //return <div id={backgroundType} className="page-appearance">Loading Weather Data....</div>;
         } else {
             //return (
             returnObject = 
                 <div id={backgroundType} className="page-appearance">
                     <h1 className="title">instantWeather</h1>
-                    {/* <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
-                    </form> */}
                     <SearchBox searchSubmit={this.loadCityData}/>
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in: {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
                     <div className="same-line">

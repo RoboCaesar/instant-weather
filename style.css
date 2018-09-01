@@ -134,13 +134,20 @@ p {
 }
 
 .search-result {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   padding-left: 5px;
+  margin: 0px;
+  line-height: 2px;
 }
 
 .search-result:hover {
+  background-color: rgb(182, 203, 224);
+  border: 1px solid rgb(164, 184, 204);
+}
+
+.search-result.selected {
   background-color: #DEF;
-  border: 1px solid #CDE;
+  border: 1px solid #CDE;  
 }
 
 .results-box {
@@ -154,6 +161,8 @@ p {
   background-color: #EEE;
   position: absolute;
   text-align: left;
+  font-size: 90%;
+  font-weight: 700;
 }
 
 /* https://loading.io/css/ */
