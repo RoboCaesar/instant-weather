@@ -5,7 +5,9 @@ class WeatherInterface extends React.Component {
 
     render() {
         return (
-            <CityData />
+            <div>
+                <CityData />
+            </div>
         );
     }
 }

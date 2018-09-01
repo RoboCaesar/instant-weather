@@ -67,6 +67,10 @@ p {
   vertical-align: text-top;
 }
 
+td:nth-of-type(1) {
+  font-weight: 700;
+}
+
 .title {
   font-size: 300%;
 }
@@ -220,4 +224,15 @@ p {
   100% {
     transform: translate(19px, 0);
   }
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 0px;
+  font-size: 75%;
+  display: inherit;
+  align-self: center;
+  justify-content: space-evenly;
+  width: 40%;
+  opacity: 0.5;
 }

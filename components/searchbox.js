@@ -1,6 +1,5 @@
-// import Link from 'next/link';
-// import PropTypes from 'prop-types';
 const axios = require('axios');
+import {getCountryName} from './countrylist';
 
 
 // function resultsItems(props) {
@@ -149,8 +148,8 @@ class SearchBox extends React.Component {
                     let highlighted = (index === this.state.selectedResult ? 'selected' : '');
                     return (
                     <div className={"search-result " + (this.state.selectedResult===index ? 'selected' : '')} key={entry.id} onClick={() => this.handleClick(entry.id)}>
-                        <p>{entry.name}, {entry.country}</p>
-                        <p className="location-info">{entry.coord.lat}°, {entry.coord.lon}°</p>
+                        <p>{entry.name}, {getCountryName(entry.country)}</p>
+                        <p className="location-info">{entry.coord.lat.toFixed(2)}°, {entry.coord.lon.toFixed(2)}°</p>
                     </div>
                     )
                 });

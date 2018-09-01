@@ -1,6 +1,7 @@
 import {apikey} from './apikey.json';
 import {getCountryName} from './countrylist';
 import SearchBox from './searchbox.js';
+import Footer from '../components/footer';
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -128,7 +129,7 @@ export class CityData extends React.Component {
                         <table id="weather-table">
                             <tbody>
                                 <tr>
-                                    <td>Barometric pressure</td>
+                                    <td>Bar. pressure</td>
                                     <td>{cityData.main.pressure} mb/hPa</td>
                                 </tr>
                                 <tr>
@@ -146,6 +147,7 @@ export class CityData extends React.Component {
                             </tbody>
                         </table>
                     </div>
+                    <Footer />
                 </div>
             ;
         }
