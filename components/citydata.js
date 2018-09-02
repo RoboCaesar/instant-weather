@@ -2,6 +2,7 @@ import {apikey} from './apikey.json';
 import {getCountryName} from './countrylist';
 import SearchBox from './searchbox.js';
 import Footer from '../components/footer';
+import TempDisplay from '../components/temperature-display';
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -109,7 +110,7 @@ export class CityData extends React.Component {
                     <h1 className="title">instantWeather</h1>
                     <SearchBox searchSubmit={this.loadCityData}/>
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in: {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
-                    <div className="same-line">
+                    {/* <div className="same-line">
                         <table>
                             <tbody>
                                 <tr>
@@ -123,7 +124,8 @@ export class CityData extends React.Component {
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> */}
+                    <TempDisplay temperature={(cityData.main.temp - 273.15).toFixed(1)} weathericon={cityData.weather[0].icon} />
 
                     <div className="other-info">
                         <table id="weather-table">

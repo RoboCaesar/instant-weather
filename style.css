@@ -67,6 +67,18 @@ p {
   vertical-align: text-top;
 }
 
+a {
+  display: inherit;
+  vertical-align: text-top;
+  text-decoration: none;
+  color: rgb(255, 237, 74);
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
 td:nth-of-type(1) {
   font-weight: 700;
 }
@@ -123,6 +135,12 @@ td:nth-of-type(1) {
   margin: auto;
 }
 
+.descriptive-paragraph {
+  word-wrap: normal;
+  width: 75%;
+  margin: 0 auto;
+  text-align: justify;
+}
 
 /* CSS settings from the predictive-search app. */
 .extra-info {
@@ -232,6 +250,7 @@ td:nth-of-type(1) {
   font-size: 75%;
   display: inherit;
   align-self: center;
+  align-items: baseline;
   justify-content: space-evenly;
   width: 40%;
   opacity: 0.5;
