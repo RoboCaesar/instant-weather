@@ -3,6 +3,7 @@ import {getCountryName} from './countrylist';
 import SearchBox from './searchbox.js';
 import Footer from '../components/footer';
 import TempDisplay from '../components/temperature-display';
+import ExtraInfo from '../components/extra-weather-info';
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -109,7 +110,7 @@ export class CityData extends React.Component {
                 <div id={backgroundType} className="page-appearance">
                     <h1 className="title">instantWeather</h1>
                     <SearchBox searchSubmit={this.loadCityData}/>
-                    <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in: {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
+                    <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
                     {/* <div className="same-line">
                         <table>
                             <tbody>
@@ -125,7 +126,7 @@ export class CityData extends React.Component {
                             </tbody>
                         </table>
                     </div> */}
-                    <TempDisplay temperature={(cityData.main.temp - 273.15).toFixed(1)} weathericon={cityData.weather[0].icon} />
+                    <TempDisplay temperature={(cityData.main.temp - 273.15)} weathericon={cityData.weather[0].icon} />
 
                     <div className="other-info">
                         <table id="weather-table">
@@ -148,6 +149,7 @@ export class CityData extends React.Component {
                                 </tr>
                             </tbody>
                         </table>
+                        <button>More info on this location</button>
                     </div>
                     <Footer />
                 </div>

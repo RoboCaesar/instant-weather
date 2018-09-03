@@ -49,9 +49,14 @@ body {
 }
 
 button {
-  background-color: rgb(206, 185, 219);
-  font-size: 200%;
-  font-style: italic;
+  background-color: #EEF;
+  border: none;
+  font-size: 100%;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 3px 3px 3px rgba(23, 23, 47,0.5);
+  opacity: 0.5;
+  border-radius: 5px;
 }
 
 input {
@@ -60,6 +65,7 @@ input {
   color: #444;
   border: 1px solid transparent;
   box-shadow: 1px 1px 5px rgba(41, 33, 48, 0.5);
+  border-radius: 5px;
 }
 
 p {

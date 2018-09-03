@@ -27,7 +27,7 @@ export class TempDisplay extends React.Component {
                 <img src={"./static/weather_icons/" + this.props.weathericon + ".svg"} alt="current weather icon"/>
               </td>
               <td onClick={this.handleTempUnitClick}>                
-                <p className="temperature">{(this.state.displayMode === 'C' ? this.props.temperature : tempToF(this.props.temperature))}</p>
+                <p className="temperature">{(this.state.displayMode === 'C' ? this.props.temperature : tempToF(this.props.temperature)).toFixed(1)}</p>
                 <p style={{verticalAlign: 'top', transform: 'translateY(10px)'}}>°{this.state.displayMode}</p>
               </td>
             </tr>
