@@ -4,6 +4,7 @@ import SearchBox from './searchbox.js';
 import Footer from '../components/footer';
 import TempDisplay from '../components/temperature-display';
 import ExtraInfo from '../components/extra-weather-info';
+import Link from 'next/link'
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -116,37 +117,59 @@ export class CityData extends React.Component {
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
 
                     <TempDisplay temperature={(cityData.main.temp - 273.15)} weathericon={cityData.weather[0].icon} />
-                    {/* <table>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </table> */}
-                    <div className="other-info">
-                        {this.state.showExtras && <table id="weather-table">
-                            <tbody>
-                                <tr>
-                                    <td>Bar. pressure</td>
-                                    <td>{cityData.main.pressure} mb/hPa</td>
-                                </tr>
-                                <tr>
-                                    <td>Humidity</td>
-                                    <td>{cityData.main.humidity}%</td>
-                                </tr>
-                                <tr>
-                                    <td>Wind speed</td>
-                                    <td>{cityData.wind.speed} km/h</td>
-                                </tr>
-                                <tr>
-                                    <td>Wind direction</td>
-                                    <td>{cityData.wind.deg}° ({giveDirection(cityData.wind.deg)})</td>
-                                </tr>
-                            </tbody>
-                        </table>}
-                        <button onClick={this.toggleExtraInfo}>More info on this location</button>
-                    </div>
+                            <div className="other-info">
+                                {this.state.showExtras && <table style={{marginRight: '50px', marginBottom: '10px'}}>
+                                    <tbody>
+                                        <tr>
+                                            <td>Local Time of Calculation</td>
+                                            <td>7:30</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GPS coordinates</td>
+                                            <td>lat: {cityData.coord.lat.toFixed(2)}°  lon: {cityData.coord.lon.toFixed(2)}°</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Visibility</td>
+                                            <td>{cityData.visibility} meters</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Description</td>
+                                            <td>{(cityData.weather[0].description.charAt(0).toUpperCase() + cityData.weather[0].description.slice(1))}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Map Location</td>
+                                            <td>
+                                                <a href={"https://www.google.com/maps/place/" + cityData.coord.lat + "," + cityData.coord.lon} target="_blank">
+                                                    Click here
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>}
+                                {this.state.showExtras && <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bar. pressure</td>
+                                            <td>{cityData.main.pressure} mb/hPa</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity</td>
+                                            <td>{cityData.main.humidity}%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind speed</td>
+                                            <td>{cityData.wind.speed} km/h</td>
+                                        </tr>
+                                        {(cityData.wind.deg) && <tr>
+                                            <td>Wind direction</td>
+                                            <td>{cityData.wind.deg}° ({giveDirection(cityData.wind.deg)})</td>
+                                        </tr>}
+                                    </tbody>
+                                </table>}
+                            </div>
+                            <button onClick={this.toggleExtraInfo}>
+                                {this.state.showExtras === false ? 'More info on this location' : 'Hide extra info'}
+                            </button>
                     <Footer />
                 </div>
             ;
