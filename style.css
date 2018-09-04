@@ -57,6 +57,26 @@ button {
   box-shadow: 3px 3px 3px rgba(23, 23, 47,0.5);
   opacity: 0.5;
   border-radius: 5px;
+
+  background-color: transparent;
+
+  border: 2px solid white;
+
+  color: white;
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  background-color: white;
+  color: rgb(138, 110, 161);
+  transition-duration: 0.2s;
+}
+
+button:active {
+  background-color: #CCD;
+  box-shadow: none;
+  color: rgb(100, 76, 119);
+  transform: translate(2px, 3px);
 }
 
 input {

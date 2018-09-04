@@ -30,11 +30,17 @@ export class CityData extends React.Component {
             error: null,
             isLoaded: false,
             cityData: [],
-            backgroundType: 'default-color'
+            backgroundType: 'default-color',
+            showExtras: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.loadCityData = this.loadCityData.bind(this);
+        this.toggleExtraInfo = this.toggleExtraInfo.bind(this);
+    }
+
+    toggleExtraInfo() {
+        this.setState((prevState) => {return {showExtras: !prevState.showExtras}});
     }
 
     handleChange(event) {
@@ -96,9 +102,6 @@ export class CityData extends React.Component {
         if (cityData.cod === '404') {
             returnObject = <div id={backgroundType} className="page-appearance">
                 <h1 className="title">instantWeather</h1>
-                {/* <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a city here"/>
-                </form> */}
                 <SearchBox searchSubmit={this.loadCityData}/>
                 <h3>Error: {cityData.message}</h3>
             </div>;
@@ -111,25 +114,18 @@ export class CityData extends React.Component {
                     <h1 className="title">instantWeather</h1>
                     <SearchBox searchSubmit={this.loadCityData}/>
                     <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
-                    {/* <div className="same-line">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img src={"./static/weather_icons/" + cityData.weather[0].icon + ".svg"} alt="current weather icon"/>
-                                    </td>
-                                    <td>                
-                                        <p className="temperature">{(cityData.main.temp - 273.15).toFixed(1)}</p>
-                                        <p>°C</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> */}
-                    <TempDisplay temperature={(cityData.main.temp - 273.15)} weathericon={cityData.weather[0].icon} />
 
+                    <TempDisplay temperature={(cityData.main.temp - 273.15)} weathericon={cityData.weather[0].icon} />
+                    {/* <table>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </table> */}
                     <div className="other-info">
-                        <table id="weather-table">
+                        {this.state.showExtras && <table id="weather-table">
                             <tbody>
                                 <tr>
                                     <td>Bar. pressure</td>
@@ -148,8 +144,8 @@ export class CityData extends React.Component {
                                     <td>{cityData.wind.deg}° ({giveDirection(cityData.wind.deg)})</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <button>More info on this location</button>
+                        </table>}
+                        <button onClick={this.toggleExtraInfo}>More info on this location</button>
                     </div>
                     <Footer />
                 </div>
