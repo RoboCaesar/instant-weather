@@ -41,9 +41,16 @@ app.prepare()
       let regExFilter = new RegExp(searchQuery, 'i');
       console.log("A search is being attempted for the query " + req.params.thestring + "!");
 
-      let results = await cityData.filter(({name}) => name.match(regExFilter)).slice(0,5);
+      let results = await cityData.filter(({name}) => name.match(regExFilter)).slice(0,7);
+      if (results.length == 0) {
+        searchQuery = '\\b' + req.params.thestring;
+        regExFilter = RegExp(searchQuery, 'i');
+        results = await cityData.filter(({name}) => name.match(regExFilter)).slice(0,7);
+        return res.send(results);
+      } else {
+        return res.send(results);
+      }
       //console.log(results);
-      return res.send(results);
   })
 
   server.get('*', (req, res) => {

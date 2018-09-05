@@ -3,8 +3,6 @@ import {getCountryName} from './countrylist';
 import SearchBox from './searchbox.js';
 import Footer from '../components/footer';
 import TempDisplay from '../components/temperature-display';
-import ExtraInfo from '../components/extra-weather-info';
-import Link from 'next/link'
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
