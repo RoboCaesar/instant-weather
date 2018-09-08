@@ -2,7 +2,8 @@ import {apikey} from './apikey.json';
 import {getCountryName} from './countrylist';
 import SearchBox from './searchbox.js';
 import Footer from '../components/footer';
-import TempDisplay from '../components/temperature-display';
+import LocationDisplay from './smaller-components';
+import TempDisplay from './temperature-display';
 
 function giveDirection(degrees) {
     let adjustedDegrees = degrees + 11.25; //Adjusting the degrees makes it easier to get the direction.
@@ -56,9 +57,9 @@ export class CityData extends React.Component {
     loadCityData(cityNameOrID, numerical=false) {
         let submitURL;
         if (numerical === false) {
-            submitURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityNameOrID + '&appid=' + apikey;
+            submitURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityNameOrID + '&appid=' + apikey[0];
         } else { //With suggested search results, the city's id is submitted, not the name!
-            submitURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + cityNameOrID + '&appid=' + apikey;
+            submitURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + cityNameOrID + '&appid=' + apikey[0];
         }
 
         fetch(submitURL)
@@ -112,7 +113,9 @@ export class CityData extends React.Component {
                 <div id={backgroundType} className="page-appearance">
                     <h1 className="title">instantWeather</h1>
                     <SearchBox searchSubmit={this.loadCityData}/>
-                    <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, {getCountryName(cityData.sys.country)}</h3>
+                    <LocationDisplay cityname={cityData.Name} cityCoords={cityData.coord}/>
+                    {/* <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, </h3>  */}
+                    {/* {getCountryName(cityData.sys.country)}</h3> */}
 
                     <TempDisplay temperature={(cityData.main.temp - 273.15)} weathericon={cityData.weather[0].icon} />
                             <div className="other-info">
