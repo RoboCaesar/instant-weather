@@ -113,7 +113,7 @@ export class CityData extends React.Component {
                 <div id={backgroundType} className="page-appearance">
                     <h1 className="title">instantWeather</h1>
                     <SearchBox searchSubmit={this.loadCityData}/>
-                    <LocationDisplay cityname={cityData.Name} cityCoords={cityData.coord}/>
+                    <LocationDisplay cityname={cityData.name} cityCoords={cityData.coord}/>
                     {/* <h3 style={{paddingTop: '2%', margin: '0px'}}>Current conditions in {cityData.name}, </h3>  */}
                     {/* {getCountryName(cityData.sys.country)}</h3> */}
 

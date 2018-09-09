@@ -13,7 +13,7 @@ function loadPlaceName(latitude, longitude, fullAddress=false) {
                 let resultsIndex = result.results[0].address_components.length;
                 //console.log(result.results[0].address_components);
                 console.log("Loaded");
-                resolve(result.results[0].address_components.slice(resultsIndex-2));
+                resolve(result.results[0].address_components.filter(thing => thing.types[0] === 'administrative_area_level_1' || thing.types[0] === 'country'));//.slice(resultsIndex-3));
                 // if (fullAddress === false) return result//.results[0].address_components[resultsIndex - 1].long_name;
                 // else return result;
             },
@@ -26,7 +26,7 @@ function loadPlaceName(latitude, longitude, fullAddress=false) {
 
 async function printLocInfo() {
     console.log("Hello!");
-    var placeInfo = await loadPlaceName(10.78, 106.70);
+    var placeInfo = await loadPlaceName(43.07, -89.40);
     console.log("loaded?");
     console.log(placeInfo);  
 }
