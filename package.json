@@ -4,7 +4,6 @@
   "description": "This app is the culmination of a few different things: -Using a weather API to grab current conditions on towns and cities from around the world. -React Ajax using Axios -The use of React components in general -The use of Next.js and Express for server routing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server.js"
   },
   "author": "Thomas",
